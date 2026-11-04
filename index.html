@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRYNA SANZHAROVSKA — Photography & Mentoring</title>
+  <meta name="description" content="Фотограф и наставник Ирина Санжаровская. Индивидуальные фотосессии, мастер-классы по свету и коучинг для фотографов в Германии (Магдебург, Лейпциг).">
+  
+  <!-- Fonts: Cormorant Garamond & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FAF7F2',
+              card: '#F4EFEA',
+              sand: '#DFD5C6',
+              nude: '#CEB9A3',
+              dark: '#141414',
+              charcoal: '#222222',
+              muted: '#716B64',
+              gold: '#C5A880'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #141414;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .serif-title {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-active {
+      border-bottom: 2px solid #C5A880;
+      color: #FFFFFF !important;
+    }
+    .img-zoom {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    }
+    .img-zoom:hover {
+      transform: scale(1.03);
+    }
+    /* Custom subtle transitions for page switching */
+    .page-section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .page-section.active {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-nude/40 selection:text-brand-dark flex flex-col min-h-screen">
+
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <header class="bg-brand-dark text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" onclick="navigate('home')" class="flex flex-col group cursor-pointer">
+        <span class="serif-title text-xl sm:text-2xl tracking-[0.18em] font-light uppercase text-white group-hover:text-brand-gold transition-colors">
+          IRYNA SANZHAROVSKA
+        </span>
+        <span class="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-brand-nude font-light">
+          PHOTOGRAPHY & MENTORING
+        </span>
+      </a>
+
+      <!-- Desktop Menu Links (Exact match with Wix mockups) -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[11px] uppercase tracking-[0.18em] font-medium text-gray-300">
+        <a href="#coaching" onclick="navigate('coaching')" id="nav-coaching" class="nav-item py-1.5 hover:text-white transition-all">Коучинг</a>
+        <a href="#workshops" onclick="navigate('workshops')" id="nav-workshops" class="nav-item py-1.5 hover:text-white transition-all">Мастер-классы</a>
+        <a href="#sessions" onclick="navigate('sessions')" id="nav-sessions" class="nav-item py-1.5 hover:text-white transition-all">Фотосессии</a>
+        <a href="#portfolio" onclick="navigate('portfolio')" id="nav-portfolio" class="nav-item py-1.5 hover:text-white transition-all">Портфолио</a>
+        <a href="#about" onclick="navigate('about')" id="nav-about" class="nav-item py-1.5 hover:text-white transition-all">Об Ирине</a>
+        <a href="#reviews" onclick="navigate('reviews')" id="nav-reviews" class="nav-item py-1.5 hover:text-white transition-all">Отзывы</a>
+        <a href="#faq" onclick="navigate('faq')" id="nav-faq" class="nav-item py-1.5 hover:text-white transition-all">FAQ</a>
+        <a href="#contacts" onclick="navigate('contacts')" id="nav-contacts" class="nav-item py-1.5 hover:text-white transition-all">Контакты</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-4">
+        <a href="#contacts" onclick="navigate('contacts')" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-brand-nude text-brand-dark text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors duration-300">
+          Связаться
+        </a>
+        <button id="mobileToggle" class="lg:hidden p-2 text-white" aria-label="Открыть меню">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-charcoal px-6 py-6 border-t border-brand-charcoal/80 space-y-3 text-xs uppercase tracking-widest">
+      <a href="#home" onclick="navigate('home'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Главная</a>
+      <a href="#coaching" onclick="navigate('coaching'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Коучинг</a>
+      <a href="#workshops" onclick="navigate('workshops'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Мастер-классы</a>
+      <a href="#sessions" onclick="navigate('sessions'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Фотосессии</a>
+      <a href="#portfolio" onclick="navigate('portfolio'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Портфолио</a>
+      <a href="#about" onclick="navigate('about'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Об Ирине</a>
+      <a href="#reviews" onclick="navigate('reviews'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">Отзывы</a>
+      <a href="#faq" onclick="navigate('faq'); toggleMobile();" class="block py-2 text-gray-200 border-b border-gray-700">FAQ</a>
+      <a href="#contacts" onclick="navigate('contacts'); toggleMobile();" class="block py-2 text-brand-gold font-semibold">Контакты</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="flex-grow">
+
+    <!-- ==================== 1. PAGE: HOME ==================== -->
+    <section id="page-home" class="page-section active">
+      
+      <!-- Hero Section -->
+      <div class="bg-brand-dark text-white border-b border-gray-800">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[580px] items-stretch">
+          
+          <!-- Beige Info Card -->
+          <div class="lg:col-span-6 bg-brand-nude text-brand-dark p-8 sm:p-14 lg:p-16 flex flex-col justify-between">
+            <div class="space-y-6">
+              <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Фотограф · Наставник · Германия</span>
+              
+              <h1 class="serif-title text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] text-brand-dark">
+                В кадре — ваша индивидуальность<br>
+                <span class="italic font-light">В профессии — ваш рост</span>
+              </h1>
+              
+              <p class="text-xs sm:text-sm font-light text-brand-charcoal max-w-lg leading-relaxed pt-2">
+                Фотограф и автор мастер-классов. Помогаю раскрыть вашу уникальность и уверенно проявиться в кадре, а фотографам — развивать творческий взгляд и мастерство работы с образом, светом и композицией.
+              </p>
+            </div>
+
+            <div class="pt-8 space-y-4">
+              <p class="text-[11px] tracking-wider text-brand-muted uppercase font-medium">
+                📍 Магдебург и окрестности (до 100 км) · Лейпциг
+              </p>
+              <div class="flex flex-wrap gap-4">
+                <a href="#workshops" onclick="navigate('workshops')" class="px-6 py-3 bg-brand-dark text-white text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-white hover:text-brand-dark transition-all duration-300">
+                  Выбрать услугу
+                </a>
+                <a href="#about" onclick="navigate('about')" class="px-6 py-3 border border-brand-dark text-brand-dark text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-brand-dark hover:text-white transition-all duration-300">
+                  Об Ирине
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="lg:col-span-6 relative overflow-hidden bg-black flex items-center justify-center min-h-[380px]">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=80" 
+              alt="Ирина Санжаровская с камерой" 
+              class="w-full h-full object-cover object-center grayscale contrast-125 filter"
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Directions Overview Block -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-xl mx-auto mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Чем могу быть полезна</span>
+            <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark">
+              Выберите своё направление
+            </h2>
+            <div class="w-16 h-px bg-brand-nude mx-auto mt-4"></div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 items-stretch">
+            
+            <!-- Card 1: Коучинг -->
+            <div class="bg-white border border-brand-sand p-8 flex flex-col justify-between hover:shadow-lg transition-shadow">
+              <div class="space-y-4">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-muted font-semibold">Направление</span>
+                <h3 class="serif-title text-3xl font-normal text-brand-dark">Коучинг</h3>
+                <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                  Поддержка в поиске собственного визуального языка, раскрытии уверенности и естественности в кадре. Индивидуальный разбор вашего портфолио.
+                </p>
+              </div>
+              <div class="pt-8">
+                <a href="#coaching" onclick="navigate('coaching')" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-brand-dark hover:text-brand-gold transition-colors">
+                  <span>Узнать о коучинге</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 2: Мастер-классы (Приоритетное) -->
+            <div class="bg-brand-dark text-white border border-brand-dark p-8 flex flex-col justify-between shadow-xl relative transform md:-translate-y-2">
+              <div class="space-y-4">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-nude font-semibold">Приоритетное направление</span>
+                <h3 class="serif-title text-3xl font-normal text-white">Мастер-классы и воркшопы</h3>
+                <p class="text-xs font-light text-gray-300 leading-relaxed">
+                  Практическая работа с фотографией, студийным светом, образом и самопрезентацией в кадре. Реальная отработка схем с моделью.
+                </p>
+              </div>
+              <div class="pt-8">
+                <a href="#workshops" onclick="navigate('workshops')" class="inline-flex items-center justify-center w-full py-3 bg-brand-nude text-brand-dark text-xs uppercase tracking-[0.18em] font-semibold hover:bg-white transition-colors">
+                  Выбрать мастер-класс
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 3: Фотосессии -->
+            <div class="bg-white border border-brand-sand p-8 flex flex-col justify-between hover:shadow-lg transition-shadow">
+              <div class="space-y-4">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-muted font-semibold">Направление</span>
+                <h3 class="serif-title text-3xl font-normal text-brand-dark">Фотосессии</h3>
+                <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                  Индивидуальные съёмки в авторском стиле: от личного глубокого портрета до творческих и контент-съёмок с психологическим комфортом.
+                </p>
+              </div>
+              <div class="pt-8">
+                <a href="#sessions" onclick="navigate('sessions')" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-brand-dark hover:text-brand-gold transition-colors">
+                  <span>Узнать о съёмках</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Approach Spotlight -->
+      <div class="py-20 bg-brand-card border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Мой подход</span>
+            <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark leading-tight">
+              Не навязывать роль.<br>Помочь проявиться.
+            </h2>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal leading-relaxed">
+              Именно поэтому в моей работе нет готовых шаблонов. Вместе мы ищем образы, в которых вам комфортно, раскрываем характер и внутреннее состояние, создаём фотографии, отражающие вашу индивидуальность.
+            </p>
+            <div>
+              <a href="#about" onclick="navigate('about')" class="inline-flex items-center px-6 py-3 border border-brand-dark text-xs uppercase tracking-[0.18em] font-medium hover:bg-brand-dark hover:text-white transition-all">
+                Подробнее об Ирине
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 overflow-hidden bg-brand-dark shadow-xl aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80" 
+              alt="Мой подход — искренность в кадре" 
+              class="w-full h-full object-cover grayscale contrast-120 img-zoom"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Works & Trust Preview -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+          <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark">Работы и доверие</h2>
+          <p class="text-xs sm:text-sm font-light text-brand-muted mt-2 max-w-xl mx-auto">
+            В портфолио — реальные съёмки: личные портреты, творческие образы и проекты, в которых важна подлинность.
+          </p>
+
+          <!-- 5 Grid photos -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div class="aspect-[3/4] overflow-hidden bg-brand-dark">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Портфолио 1" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+            </div>
+            <div class="aspect-[3/4] overflow-hidden bg-brand-dark">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Портфолио 2" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+            </div>
+            <div class="aspect-[3/4] overflow-hidden bg-brand-dark">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Портфолио 3" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+            </div>
+            <div class="aspect-[3/4] overflow-hidden bg-brand-dark">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Портфолио 4" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <a href="#portfolio" onclick="navigate('portfolio')" class="px-8 py-3.5 bg-brand-dark text-white text-xs uppercase tracking-[0.2em] font-medium hover:bg-brand-gold transition-colors">
+              Смотреть портфолио →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 2. PAGE: COACHING (КОУЧИНГ) ==================== -->
+    <section id="page-coaching" class="page-section">
+      
+      <!-- Coaching Hero -->
+      <div class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[460px] items-stretch">
+          <div class="lg:col-span-6 p-8 sm:p-14 flex flex-col justify-center space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-nude font-medium">Коучинг / Развитие в фотографии</span>
+            <h1 class="serif-title text-4xl sm:text-5xl font-normal leading-tight text-white">
+              Коучинг для фотографов
+            </h1>
+            <p class="text-xs sm:text-sm font-light text-gray-300 leading-relaxed max-w-lg">
+              Индивидуальная поддержка для тех, кто хочет найти свой стиль, увереннее работать с клиентами и развиваться в профессии без страха и синдрома самозванца.
+            </p>
+            <div>
+              <a href="#contacts" onclick="navigate('contacts')" class="inline-block px-7 py-3.5 bg-brand-nude text-brand-dark text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors">
+                Записаться на консультацию →
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-brand-charcoal overflow-hidden min-h-[320px]">
+            <img 
+              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80" 
+              alt="Коучинг фотографов" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- With what questions to come -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Направления работы</span>
+            <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark">
+              С какими вопросами можно прийти
+            </h2>
+            <div class="w-16 h-px bg-brand-nude mx-auto mt-4"></div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Уверенность в съёмке</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Поддержка в преодолении сомнений, страха белого листа и зажатости. Формирование уверенности в своём взгляде и решениях на съёмочной площадке.
+              </p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Работа с клиентами</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Как выстраивать понятное и бережное общение, презентовать свою работу, обсуждать условия съёмки и повышать чек без неловкости.
+              </p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Развитие своего стиля</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Помощь в поиске и укреплении авторского взгляда, профессиональном отборе кадров в портфолио и дальнейшем осмысленном позиционировании.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Format: Individual approach -->
+      <div class="py-20 bg-brand-card border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Формат работы</span>
+            <h2 class="serif-title text-3xl sm:text-4xl font-normal text-brand-dark">Индивидуальный подход</h2>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal leading-relaxed">
+              Мы работаем с вашим реальным запросом, разбираем конкретные ситуации, ищем решения и намечаем следующие шаги.<br><br>
+              Вы получаете честную, внимательную и практическую обратную связь, основанную на моём опыте в фотографии и 5 годах психологической практики. Без готовых шаблонных рецептов и обещаний быстрого чуда — только работа, опирающаяся на ваши цели.
+            </p>
+          </div>
+          <div class="lg:col-span-6 aspect-[4/3] overflow-hidden bg-brand-dark shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80" 
+              alt="Ирина Санжаровская — наставник" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Process Steps -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Процесс работы</span>
+            <h2 class="serif-title text-3xl sm:text-4xl font-normal text-brand-dark">Как проходит коучинг</h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">01</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Запрос</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Обсуждаем вашу ситуацию, цели и конкретные вопросы, с которыми вы приходите.</p>
+            </div>
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">02</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Встреча</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Разбираем ключевые темы, анализируем ваши работы и конкретные кейсы, ищем решения.</p>
+            </div>
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">03</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">План действий</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Формулируем понятные следующие шаги, которые помогут вам двигаться дальше в комфортном темпе.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 3. PAGE: WORKSHOPS (МАСТЕР-КЛАССЫ) ==================== -->
+    <section id="page-workshops" class="page-section">
+      
+      <!-- Workshop Hero -->
+      <div class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[460px] items-stretch">
+          <div class="lg:col-span-6 p-8 sm:p-14 flex flex-col justify-center space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-nude font-medium">Практика · Свет · Композиция</span>
+            <h1 class="serif-title text-4xl sm:text-5xl font-normal leading-tight text-white">
+              Мастер-классы и воркшопы
+            </h1>
+            <p class="text-xs sm:text-sm font-light text-gray-300 leading-relaxed max-w-lg">
+              Практические занятия для фотографов: студийный свет, работа с моделью и создание выразительных кадров с кинематографичным объёмом.
+            </p>
+            <div>
+              <a href="#contacts" onclick="navigate('contacts')" class="inline-block px-7 py-3.5 bg-brand-nude text-brand-dark text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors">
+                Выбрать мастер-класс →
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-brand-charcoal overflow-hidden min-h-[320px]">
+            <img 
+              src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1200&q=80" 
+              alt="Воркшопы по студийному свету" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- What we explore -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Программа</span>
+            <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark">
+              Что будем разбирать
+            </h2>
+            <div class="w-16 h-px bg-brand-nude mx-auto mt-4"></div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Свет</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Работа со студийным светом: схемы, характер света, управление объёмом и настроением кадра, постоянный и импульсный свет.
+              </p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Работа с моделью</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Коммуникация, раскрепощение, позирование, работа с эмоцией и естественностью в кадре без скованности.
+              </p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-4">
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Композиция</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">
+                Построение выразительного кадра: баланс, ритм, акценты и работа с пространством, телом и тканью.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workshop steps -->
+      <div class="py-20 bg-brand-card border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Обучение</span>
+            <h2 class="serif-title text-3xl sm:text-4xl font-normal text-brand-dark">Как проходит мастер-класс</h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">01</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Практика</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Снимаем в студии, отрабатываем световые схемы и приёмы на реальной съёмке с моделью.</p>
+            </div>
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">02</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Разбор</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Анализируем получившиеся кадры, разбираем решения и обсуждаем, как усилить результат.</p>
+            </div>
+            <div class="border-t-2 border-brand-nude pt-6 space-y-2">
+              <span class="serif-title text-2xl text-brand-nude font-normal">03</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Обратная связь</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Получаете персональные рекомендации и ответы на любые технические и творческие вопросы.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 4. PAGE: SESSIONS (ФОТОСЕССИИ) ==================== -->
+    <section id="page-sessions" class="page-section">
+      
+      <!-- Sessions Hero -->
+      <div class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[460px] items-stretch">
+          <div class="lg:col-span-6 p-8 sm:p-14 flex flex-col justify-center space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-nude font-medium">Авторская съёмка</span>
+            <h1 class="serif-title text-4xl sm:text-5xl font-normal leading-tight text-white">
+              Индивидуальные фотосессии
+            </h1>
+            <p class="text-xs sm:text-sm font-light text-gray-300 leading-relaxed max-w-lg">
+              Съёмка, в центре которой — вы и ваша история. Вместе создадим выразительные кадры, передающие характер, настроение и индивидуальность.
+            </p>
+            <div>
+              <a href="#contacts" onclick="navigate('contacts')" class="inline-block px-7 py-3.5 bg-brand-nude text-brand-dark text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors">
+                Записаться на съёмку →
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-brand-charcoal overflow-hidden min-h-[320px]">
+            <img 
+              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80" 
+              alt="Индивидуальная фотосессия" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Your story in the frame -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 aspect-[4/5] overflow-hidden bg-brand-dark shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80" 
+              alt="Ваша история в кадре" 
+              class="w-full h-full object-cover grayscale contrast-120"
+            />
+          </div>
+          <div class="lg:col-span-6 space-y-6">
+            <h2 class="serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-dark">
+              Ваша история в кадре
+            </h2>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal leading-relaxed">
+              Индивидуальная фотосессия — это возможность увидеть себя по-новому, подчеркнуть свою уникальность, сохранить важный этап жизни или просто получить глубокую эстетичную съёмку для себя.<br><br>
+              Мы не гонимся за искусственной гламурностью. Моя задача — поймать живой взгляд, внутреннее состояние и ту красоту, которая не зависит от трендов.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How photoshoot works -->
+      <div class="py-20 bg-brand-card border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-14 space-y-2">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Процесс</span>
+            <h2 class="serif-title text-3xl sm:text-4xl font-normal text-brand-dark">Как проходит фотосессия</h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-brand-sand space-y-3">
+              <span class="serif-title text-2xl text-brand-nude">01</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Обсуждение идеи</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Знакомимся, обсуждаем ваши желания, настроение и желаемый результат.</p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-3">
+              <span class="serif-title text-2xl text-brand-nude">02</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Подготовка образа</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Подбираем стиль, одежду и студию/локацию, чтобы съёмка отразила именно вас.</p>
+            </div>
+            <div class="p-8 bg-white border border-brand-sand space-y-3">
+              <span class="serif-title text-2xl text-brand-nude">03</span>
+              <h3 class="serif-title text-2xl font-normal text-brand-dark">Съёмка</h3>
+              <p class="text-xs font-light text-brand-charcoal leading-relaxed">Создаём комфортную, доверительную атмосферу, в которой вы можете быть собой.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 5. PAGE: PORTFOLIO ==================== -->
+    <section id="page-portfolio" class="page-section">
+      <div class="py-16 max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Избранные работы</span>
+          <h1 class="serif-title text-4xl sm:text-5xl font-normal text-brand-dark">Портфолио</h1>
+          <p class="text-xs sm:text-sm font-light text-brand-muted">Люди, образы и истории в кадре</p>
+        </div>
+
+        <!-- Filter Buttons (Exact match with Wix) -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button onclick="filterGallery('all')" class="gallery-filter-btn active px-5 py-2 text-xs uppercase tracking-widest font-medium bg-brand-dark text-white border border-brand-dark">
+            Все работы
+          </button>
+          <button onclick="filterGallery('individual')" class="gallery-filter-btn px-5 py-2 text-xs uppercase tracking-widest font-medium bg-white text-brand-dark border border-brand-sand hover:border-brand-dark">
+            Индивидуальные съёмки
+          </button>
+          <button onclick="filterGallery('creative')" class="gallery-filter-btn px-5 py-2 text-xs uppercase tracking-widest font-medium bg-white text-brand-dark border border-brand-sand hover:border-brand-dark">
+            Творческие проекты
+          </button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolioGallery">
+          
+          <div class="gallery-item individual overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Портрет" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+          <div class="gallery-item creative overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Творческий проект" class="w-full h-full object-cover grayscale contrast-120 img-zoom">
+          </div>
+          <div class="gallery-item individual overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Мужской портрет" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+          <div class="gallery-item creative overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Свет и тень" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+          <div class="gallery-item individual overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Взгляд" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+          <div class="gallery-item creative overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80" alt="Арт" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+          <div class="gallery-item individual overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Образ" class="w-full h-full object-cover grayscale contrast-115 img-zoom">
+          </div>
+          <div class="gallery-item creative overflow-hidden bg-brand-dark aspect-[3/4] cursor-pointer" onclick="openModalImg(this)">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80" alt="Детали" class="w-full h-full object-cover grayscale contrast-125 img-zoom">
+          </div>
+
+        </div>
+
+        <!-- Banner inside portfolio -->
+        <div class="mt-16 text-center py-12 border-t border-brand-sand">
+          <h3 class="serif-title text-3xl font-normal text-brand-dark">Есть идея для съёмки?</h3>
+          <p class="text-xs font-light text-brand-muted mt-2">Расскажите о своей задумке — обсудим формат, образы и реализацию.</p>
+          <div class="mt-6">
+            <a href="#contacts" onclick="navigate('contacts')" class="inline-block px-7 py-3 bg-brand-nude text-brand-dark text-xs uppercase tracking-[0.2em] font-semibold hover:bg-brand-dark hover:text-white transition-colors">
+              Обсудить фотосессию →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. PAGE: ABOUT (ОБ ИРИНЕ) ==================== -->
+    <section id="page-about" class="page-section">
+      
+      <!-- About Hero -->
+      <div class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[460px] items-stretch">
+          <div class="lg:col-span-6 bg-brand-nude text-brand-dark p-8 sm:p-14 flex flex-col justify-center space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-medium">Об Ирине</span>
+            <h1 class="serif-title text-4xl sm:text-5xl font-normal leading-tight text-brand-dark">
+              Увидеть больше, чем внешность
+            </h1>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal leading-relaxed">
+              Фотограф и наставник. Работаю с образом, светом и внутренним состоянием человека.
+            </p>
+          </div>
+          <div class="lg:col-span-6 bg-brand-charcoal overflow-hidden min-h-[320px]">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80" 
+              alt="Ирина Санжаровская" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialogue philosophy -->
+      <div class="py-20 border-b border-brand-sand">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 bg-brand-dark text-white p-8 sm:p-12 space-y-4">
+            <h2 class="serif-title text-3xl sm:text-4xl font-normal text-white">
+              Фотография — это диалог
+            </h2>
+            <p class="text-xs sm:text-sm font-light text-gray-300 leading-relaxed">
+              Между вами и камерой, между образом и ощущениями, между внешним и внутренним.<br><br>
+              Я создаю пространство для этого диалога — искреннего, глубокого и живого. Потому что человек всегда больше, чем его привычное представление о себе.
+            </p>
+          </div>
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Мой путь</span>
+            <h3 class="serif-title text-3xl font-normal text-brand-dark">От Украины до Германии</h3>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal leading-relaxed">
+              С 2018 года фотография занимает ключевое место в моей жизни. За эти годы я прошла путь от увлечения фотографией до осознанного поиска авторского языка. Психологическое образование и 5-летний опыт работы с людьми в формате психологической практики и коучинга стали моим фундаментом.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 7. PAGE: REVIEWS ==================== -->
+    <section id="page-reviews" class="page-section">
+      <div class="py-20 max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-xl mx-auto mb-14 space-y-2">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Впечатления тех, кто уже был в кадре</span>
+          <h1 class="serif-title text-4xl sm:text-5xl font-normal text-brand-dark">Отзывы</h1>
+          <div class="w-16 h-px bg-brand-nude mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-8 bg-white border border-brand-sand flex flex-col justify-between space-y-6">
+            <p class="serif-title text-xl italic font-light text-brand-charcoal leading-relaxed">
+              «Съёмка помогла мне увидеть себя по-новому — более уверенной, живой и настоящей. Спасибо за невероятно комфортную атмосферу!»
+            </p>
+            <span class="text-xs uppercase tracking-wider text-brand-muted font-medium">— Анна</span>
+          </div>
+
+          <div class="p-8 bg-white border border-brand-sand flex flex-col justify-between space-y-6">
+            <p class="serif-title text-xl italic font-light text-brand-charcoal leading-relaxed">
+              «Очень ценный опыт: не просто фотография, а глубокая поддержка и внимательный процесс. Фотографии хочется пересматривать бесконечно.»
+            </p>
+            <span class="text-xs uppercase tracking-wider text-brand-muted font-medium">— Вероника</span>
+          </div>
+
+          <div class="p-8 bg-white border border-brand-sand flex flex-col justify-between space-y-6">
+            <p class="serif-title text-xl italic font-light text-brand-charcoal leading-relaxed">
+              «Атмосфера, доверие и тонкое чувство стиля. Благодарна за этот опыт и потрясающий результат на воркшопе по свету!»
+            </p>
+            <span class="text-xs uppercase tracking-wider text-brand-muted font-medium">— Елена</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. PAGE: FAQ ==================== -->
+    <section id="page-faq" class="page-section">
+      <div class="py-20 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left side photo like in Wix design -->
+          <div class="lg:col-span-4 hidden lg:block bg-brand-dark aspect-[3/5] overflow-hidden sticky top-28 shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80" 
+              alt="Студийный свет и камера" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+
+          <!-- Right side: Categorized FAQ -->
+          <div class="lg:col-span-8 space-y-12">
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Информация</span>
+              <h1 class="serif-title text-4xl sm:text-5xl font-normal text-brand-dark mt-1">Частые вопросы</h1>
+              <p class="text-xs sm:text-sm font-light text-brand-muted mt-2">Всё, что важно знать перед съёмкой или занятием.</p>
+            </div>
+
+            <!-- Group: Фотосессии -->
+            <div class="space-y-4">
+              <h2 class="serif-title text-3xl font-normal text-brand-dark border-b border-brand-sand pb-3">Фотосессии</h2>
+              
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Как подготовиться к фотосессии?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  Мы заранее обсуждаем идею, подбираем образы из вашего гардероба и цветовую палитру. Вам не нужно учиться позировать — я направляю вас на каждом шаге.
+                </div>
+              </div>
+
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Где проходят съёмки?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  В профессиональных фотостудиях Магдебурга, Лейпцига и окрестностей (до 100 км), а также на открытых локациях или с выездом по договоренности.
+                </div>
+              </div>
+
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Как записаться на съёмку?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  Напишите мне в контактной форме или через Telegram/Instagram — мы обсудим детали и подберём подходящую дату.
+                </div>
+              </div>
+            </div>
+
+            <!-- Group: Мастер-классы -->
+            <div class="space-y-4 pt-4">
+              <h2 class="serif-title text-3xl font-normal text-brand-dark border-b border-brand-sand pb-3">Мастер-классы и воркшопы</h2>
+              
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Нужен ли опыт для участия?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  Достаточно базового понимания настроек своей камеры. Все нюансы работы со студийным светом мы подробно разбираем на практике.
+                </div>
+              </div>
+
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Что взять с собой?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  Вашу камеру с объективом (лучше всего фокусные расстояния 35mm, 50mm или 85mm) и заряженные аккумуляторы со свободными картами памяти.
+                </div>
+              </div>
+            </div>
+
+            <!-- Group: Коучинг -->
+            <div class="space-y-4 pt-4">
+              <h2 class="serif-title text-3xl font-normal text-brand-dark border-b border-brand-sand pb-3">Коучинг</h2>
+              
+              <div class="faq-item border-b border-brand-sand pb-4 cursor-pointer" onclick="toggleAcc(this)">
+                <div class="flex justify-between items-center py-2">
+                  <h3 class="serif-title text-xl text-brand-dark">Кому подходит коучинг?</h3>
+                  <span class="faq-sym text-xl font-light text-brand-muted">+</span>
+                </div>
+                <div class="faq-body hidden text-xs font-light text-brand-charcoal pt-2 leading-relaxed">
+                  Фотографам любого уровня, которые чувствуют застой, неуверенность перед клиентами или хотят найти свой индивидуальный визуальный почерк.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 9. PAGE: CONTACTS ==================== -->
+    <section id="page-contacts" class="page-section">
+      
+      <!-- Contact Hero -->
+      <div class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[400px] items-stretch">
+          <div class="lg:col-span-6 bg-brand-nude text-brand-dark p-8 sm:p-14 flex flex-col justify-center space-y-4">
+            <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-semibold">Связь</span>
+            <h1 class="serif-title text-4xl sm:text-5xl font-normal text-brand-dark">Давайте обсудим вашу идею</h1>
+            <p class="text-xs sm:text-sm font-light text-brand-charcoal">Фотосессия, коучинг или мастер-класс — расскажите, что вас интересует.</p>
+          </div>
+          <div class="lg:col-span-6 bg-brand-charcoal overflow-hidden min-h-[280px]">
+            <img 
+              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80" 
+              alt="Контакты" 
+              class="w-full h-full object-cover grayscale contrast-125"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Form & Info -->
+      <div class="py-20 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-12">
+          
+          <!-- Left: Form -->
+          <div class="lg:col-span-7 bg-white border border-brand-sand p-8 sm:p-12 shadow-sm">
+            <h2 class="serif-title text-3xl font-normal text-brand-dark mb-2">Напишите мне</h2>
+            <p class="text-xs font-light text-brand-muted mb-8">Заполните форму, и я свяжусь с вами, чтобы обсудить детали.</p>
+
+            <form id="mainContactForm" onsubmit="handleContactSubmit(event)" class="space-y-5">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-brand-charcoal font-medium mb-1">Ваше имя *</label>
+                <input type="text" required class="w-full px-4 py-3 bg-brand-cream border border-brand-sand text-xs focus:outline-none focus:border-brand-dark">
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-brand-charcoal font-medium mb-1">Электронная почта *</label>
+                <input type="email" required class="w-full px-4 py-3 bg-brand-cream border border-brand-sand text-xs focus:outline-none focus:border-brand-dark">
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-brand-charcoal font-medium mb-1">Телефон (необязательно)</label>
+                <input type="tel" placeholder="+49 ..." class="w-full px-4 py-3 bg-brand-cream border border-brand-sand text-xs focus:outline-none focus:border-brand-dark">
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-brand-charcoal font-medium mb-1">Что вас интересует?</label>
+                <select class="w-full px-4 py-3 bg-brand-cream border border-brand-sand text-xs focus:outline-none focus:border-brand-dark">
+                  <option value="Фотосессия">Индивидуальная фотосессия</option>
+                  <option value="Мастер-класс">Мастер-класс или воркшоп</option>
+                  <option value="Коучинг">Коучинг для фотографов</option>
+                  <option value="Другое">Другой творческий проект</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-brand-charcoal font-medium mb-1">Ваше сообщение</label>
+                <textarea rows="4" placeholder="Расскажите о вашей задумке..." class="w-full px-4 py-3 bg-brand-cream border border-brand-sand text-xs focus:outline-none focus:border-brand-dark"></textarea>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="w-full py-4 bg-brand-dark text-white text-xs uppercase tracking-[0.2em] font-medium hover:bg-brand-gold transition-colors">
+                  Отправить сообщение
+                </button>
+              </div>
+            </form>
+
+            <div id="contactFormDone" class="hidden text-center py-10 space-y-3">
+              <i data-lucide="check-circle" class="w-12 h-12 text-brand-gold mx-auto"></i>
+              <h3 class="serif-title text-3xl text-brand-dark">Спасибо за ваше сообщение!</h3>
+              <p class="text-xs font-light text-brand-muted">Ирина свяжется с вами в течение 24 часов.</p>
+            </div>
+          </div>
+
+          <!-- Right: Location & Contacts Info -->
+          <div class="lg:col-span-5 space-y-8">
+            <div class="bg-white border border-brand-sand p-8 space-y-6">
+              <div>
+                <h3 class="serif-title text-2xl font-normal text-brand-dark">Где я работаю</h3>
+                <p class="text-xs font-light text-brand-charcoal mt-2">
+                  📍 Магдебург и окрестности (до 100 км) · Лейпциг
+                </p>
+              </div>
+
+              <div class="border-t border-brand-sand pt-6 space-y-3">
+                <span class="text-[10px] uppercase tracking-widest text-brand-muted font-semibold">Социальные сети</span>
+                <div class="flex flex-col gap-3 text-xs">
+                  <a href="https://instagram.com" target="_blank" rel="noopener" class="flex items-center gap-3 text-brand-dark hover:text-brand-gold">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                    <span>Instagram</span>
+                  </a>
+                  <a href="https://facebook.com" target="_blank" rel="noopener" class="flex items-center gap-3 text-brand-dark hover:text-brand-gold">
+                    <i data-lucide="facebook" class="w-4 h-4"></i>
+                    <span>Facebook</span>
+                  </a>
+                  <a href="https://t.me/" target="_blank" rel="noopener" class="flex items-center gap-3 text-brand-dark hover:text-brand-gold">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>Telegram</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Author Photo Box -->
+            <div class="bg-brand-dark aspect-[4/5] overflow-hidden shadow-lg relative">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80" 
+                alt="Ирина Санжаровская" 
+                class="w-full h-full object-cover grayscale contrast-125"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================== COMMON FOOTER BANNER ==================== -->
+  <aside class="bg-brand-nude text-brand-dark py-12 border-t border-brand-sand">
+    <div class="max-w-7xl mx-auto px-6 text-center space-y-2">
+      <p class="serif-title text-2xl sm:text-3xl italic font-light">
+        «С радостью отвечу на ваши вопросы и помогу раскрыть вашу индивидуальность в кадре»
+      </p>
+    </div>
+  </aside>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-dark text-white py-12 border-t border-gray-800 text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex flex-col items-center md:items-start">
+        <span class="serif-title text-lg tracking-[0.18em] uppercase text-white font-light">IRYNA SANZHAROVSKA</span>
+        <span class="text-[9px] tracking-[0.3em] uppercase text-brand-nude">PHOTOGRAPHY & MENTORING</span>
+      </div>
+
+      <!-- Footer Menu -->
+      <div class="flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-[0.18em] text-gray-400">
+        <a href="#coaching" onclick="navigate('coaching')" class="hover:text-white transition-colors">Коучинг</a>
+        <a href="#workshops" onclick="navigate('workshops')" class="hover:text-white transition-colors">Мастер-классы</a>
+        <a href="#sessions" onclick="navigate('sessions')" class="hover:text-white transition-colors">Фотосессии</a>
+        <a href="#portfolio" onclick="navigate('portfolio')" class="hover:text-white transition-colors">Портфолио</a>
+        <a href="#about" onclick="navigate('about')" class="hover:text-white transition-colors">Об Ирине</a>
+        <a href="#reviews" onclick="navigate('reviews')" class="hover:text-white transition-colors">Отзывы</a>
+        <a href="#faq" onclick="navigate('faq')" class="hover:text-white transition-colors">FAQ</a>
+        <a href="#contacts" onclick="navigate('contacts')" class="hover:text-white transition-colors">Контакты</a>
+      </div>
+
+      <div class="text-[10px] text-gray-400">
+        © 2026 Irina Sanzharovska.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== IMAGE LIGHTBOX MODAL ==================== -->
+  <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4 cursor-pointer" onclick="closeModalImg()">
+    <div class="relative max-w-4xl max-h-[90vh]">
+      <button class="absolute -top-10 right-0 text-white text-2xl font-light hover:text-brand-nude" onclick="closeModalImg()">✕</button>
+      <img id="lightboxImageSrc" src="" alt="Full view" class="max-w-full max-h-[85vh] object-contain shadow-2xl border border-gray-800">
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobileMenu');
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function toggleMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Single-page navigation controller (handles hashes)
+    const routes = ['home', 'coaching', 'workshops', 'sessions', 'portfolio', 'about', 'reviews', 'faq', 'contacts'];
+    
+    function navigate(route) {
+      if (!routes.includes(route)) route = 'home';
+      
+      // Hide all pages
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      
+      // Show targeted page
+      const targetSec = document.getElementById(`page-${route}`);
+      if (targetSec) {
+        targetSec.classList.add('active');
+      }
+
+      // Update active nav styling
+      document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('nav-active'));
+      const activeLink = document.getElementById(`nav-${route}`);
+      if (activeLink) activeLink.classList.add('nav-active');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Update hash in URL quietly
+      history.pushState(null, null, `#${route}`);
+    }
+
+    // Handle hash on load and back/forward
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      navigate(hash || 'home');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const initialHash = window.location.hash.replace('#', '');
+      navigate(initialHash || 'home');
+    });
+
+    // Accordions
+    function toggleAcc(el) {
+      const body = el.querySelector('.faq-body');
+      const sym = el.querySelector('.faq-sym');
+      const isHidden = body.classList.contains('hidden');
+      
+      body.classList.toggle('hidden');
+      sym.textContent = isHidden ? '—' : '+';
+    }
+
+    // Portfolio Filtering
+    function filterGallery(type) {
+      const btns = document.querySelectorAll('.gallery-filter-btn');
+      btns.forEach(btn => {
+        btn.classList.remove('bg-brand-dark', 'text-white', 'border-brand-dark');
+        btn.classList.add('bg-white', 'text-brand-dark', 'border-brand-sand');
+      });
+      event.target.classList.remove('bg-white', 'text-brand-dark', 'border-brand-sand');
+      event.target.classList.add('bg-brand-dark', 'text-white', 'border-brand-dark');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (type === 'all' || item.classList.contains(type)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox
+    function openModalImg(el) {
+      const img = el.querySelector('img');
+      document.getElementById('lightboxImageSrc').src = img.src;
+      const lb = document.getElementById('imageLightbox');
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+    }
+    function closeModalImg() {
+      const lb = document.getElementById('imageLightbox');
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+    }
+
+    // Contact form submit simulation
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('mainContactForm').classList.add('hidden');
+      document.getElementById('contactFormDone').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('mainContactForm').reset();
+        document.getElementById('mainContactForm').classList.remove('hidden');
+        document.getElementById('contactFormDone').classList.add('hidden');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
